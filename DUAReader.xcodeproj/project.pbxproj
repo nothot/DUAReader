@@ -7,21 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5474F201FF23A11005B50B9 /* DUABookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F1F1FF23A11005B50B9 /* DUABookModel.swift */; };
 		C5474F261FF3430E005B50B9 /* UIView+subScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F251FF3430E005B50B9 /* UIView+subScript.swift */; };
 		C5474F281FF3499D005B50B9 /* 郭黄之恋.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */; };
 		C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */; };
 		C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */; };
 		C5915BB71FFE347800762D80 /* bottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB61FFE347800762D80 /* bottomMenu.xib */; };
 		C5915BBC1FFF1C3E00762D80 /* topMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BBB1FFF1C3E00762D80 /* topMenu.xib */; };
-		C59C4AF11FFE1408002B0DC9 /* 中国国家地理.epub in Resources */ = {isa = PBXBuildFile; fileRef = C59C4AF01FFE13DC002B0DC9 /* 中国国家地理.epub */; };
 		C5A6A3501FF4D08C008A8D59 /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5A6A34F1FF4D08C008A8D59 /* SettingView.xib */; };
 		C5AD54321FFC78A800366097 /* DUAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD54311FFC78A800366097 /* DUAUtils.swift */; };
 		C5B877C21FFCA26E008844C5 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5474F2A1FF363DE005B50B9 /* libxml2.tbd */; };
 		C5B877C41FFCA318008844C5 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B877C31FFCA318008844C5 /* ZipArchive.framework */; };
 		C5B877C61FFCA395008844C5 /* TouchXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B877C51FFCA395008844C5 /* TouchXML.framework */; };
-		C5B877DE1FFCC69D008844C5 /* 卑鄙的圣人：曹操.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5AD53EF1FFC742000366097 /* 卑鄙的圣人：曹操.epub */; };
-		C5B877E11FFCDCEC008844C5 /* 图文天下·中国通史.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5B877E01FFCDC9B008844C5 /* 图文天下·中国通史.epub */; };
 		C5BEC0C61FF1EE30002FAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BEC0C51FF1EE30002FAC5A /* AppDelegate.swift */; };
 		C5BEC0C81FF1EE30002FAC5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BEC0C71FF1EE30002FAC5A /* ViewController.swift */; };
 		C5BEC0CB1FF1EE30002FAC5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5BEC0C91FF1EE30002FAC5A /* Main.storyboard */; };
@@ -42,7 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C5474F1F1FF23A11005B50B9 /* DUABookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUABookModel.swift; sourceTree = "<group>"; };
 		C5474F251FF3430E005B50B9 /* UIView+subScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+subScript.swift"; sourceTree = "<group>"; };
 		C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "郭黄之恋.txt"; sourceTree = "<group>"; };
 		C5474F2A1FF363DE005B50B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -50,14 +45,11 @@
 		C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "每天懂一点好玩心理学.epub"; sourceTree = "<group>"; };
 		C5915BB61FFE347800762D80 /* bottomMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomMenu.xib; sourceTree = "<group>"; };
 		C5915BBB1FFF1C3E00762D80 /* topMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = topMenu.xib; sourceTree = "<group>"; };
-		C59C4AF01FFE13DC002B0DC9 /* 中国国家地理.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "中国国家地理.epub"; sourceTree = "<group>"; };
 		C5A6A34F1FF4D08C008A8D59 /* SettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
-		C5AD53EF1FFC742000366097 /* 卑鄙的圣人：曹操.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "卑鄙的圣人：曹操.epub"; sourceTree = "<group>"; };
 		C5AD54311FFC78A800366097 /* DUAUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAUtils.swift; sourceTree = "<group>"; };
 		C5B877C31FFCA318008844C5 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
 		C5B877C51FFCA395008844C5 /* TouchXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TouchXML.framework; sourceTree = "<group>"; };
 		C5B877C81FFCA786008844C5 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		C5B877E01FFCDC9B008844C5 /* 图文天下·中国通史.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "图文天下·中国通史.epub"; sourceTree = "<group>"; };
 		C5BEC0C21FF1EE30002FAC5A /* DUAReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DUAReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5BEC0C51FF1EE30002FAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5BEC0C71FF1EE30002FAC5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,10 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */,
-				C5AD53EF1FFC742000366097 /* 卑鄙的圣人：曹操.epub */,
 				C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */,
-				C5B877E01FFCDC9B008844C5 /* 图文天下·中国通史.epub */,
-				C59C4AF01FFE13DC002B0DC9 /* 中国国家地理.epub */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -224,7 +213,6 @@
 			children = (
 				C5BEC0EB1FF1F0D6002FAC5A /* DUAChapterModel.swift */,
 				C5BEC0ED1FF1F0EB002FAC5A /* DUAPageModel.swift */,
-				C5474F1F1FF23A11005B50B9 /* DUABookModel.swift */,
 			);
 			path = storage;
 			sourceTree = "<group>";
@@ -306,9 +294,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59C4AF11FFE1408002B0DC9 /* 中国国家地理.epub in Resources */,
-				C5B877E11FFCDCEC008844C5 /* 图文天下·中国通史.epub in Resources */,
-				C5B877DE1FFCC69D008844C5 /* 卑鄙的圣人：曹操.epub in Resources */,
 				C5BEC0D01FF1EE30002FAC5A /* LaunchScreen.storyboard in Resources */,
 				C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */,
 				C5A6A3501FF4D08C008A8D59 /* SettingView.xib in Resources */,
@@ -332,7 +317,6 @@
 				C5BEC0E21FF1EF95002FAC5A /* DUAPageViewController.swift in Sources */,
 				C5BEC0F41FF1F15E002FAC5A /* DUAConfiguration.swift in Sources */,
 				C5F49C8B1FF5193F00FDFF3A /* DUATableView.swift in Sources */,
-				C5474F201FF23A11005B50B9 /* DUABookModel.swift in Sources */,
 				C5BEC0F21FF1F14D002FAC5A /* DUATextDataParser.swift in Sources */,
 				C5474F261FF3430E005B50B9 /* UIView+subScript.swift in Sources */,
 				C5BEC0C81FF1EE30002FAC5A /* ViewController.swift in Sources */,

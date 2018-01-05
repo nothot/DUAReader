@@ -17,8 +17,8 @@ enum DUAReaderState {
 protocol DUAReaderDelegate: NSObjectProtocol {
     func readerDidClickSettingFrame(reader: DUAReader) -> Void
     func reader(reader: DUAReader, readerStateChanged state: DUAReaderState) -> Void
-    func reader(reader: DUAReader, readerProgressUpdated curChapter: Int, curPage: Int) -> Void
-    
+    func reader(reader: DUAReader, readerProgressUpdated curChapter: Int, curPage: Int, totalPages: Int) -> Void
+    func reader(reader: DUAReader, chapterTitles: [String]) -> Void
     
 }
 
@@ -60,6 +60,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
     
     private var statusBarForTableView: DUAStatusBar?
     
+    var successSwitchChapter = 0
+    
+    
     
     
     override var prefersStatusBarHidden: Bool {
@@ -71,19 +74,30 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         
         self.postReaderStateNotification(state: .busy)
         self.dataParser.parseChapterFromBook(path: filePath, completeHandler: {(titles, models) -> Void in
-            
+            if self.delegate?.reader(reader: chapterTitles: ) != nil {
+                self.delegate?.reader(reader: self, chapterTitles: titles)
+            }
             self.totalChapterModels = models
             self.readWith(chapter: models.first!, pageIndex: pageIndex)
         })
         
     }
     
-    public func readChapterBy(index: Int) -> Void {
+    public func readChapterBy(index: Int, pageIndex: Int) -> Void {
         if index > 0 && index <= totalChapterModels.count {
-            self.requestChapterWith(index: index)
-            currentPageIndex = 0
-            self.updateChapterIndex(index: index)
-            self.loadPage(pageIndex: currentPageIndex)
+            if self.pageArrayFromCache(chapterIndex: index).isEmpty {
+                successSwitchChapter = index
+                self.postReaderStateNotification(state: .busy)
+                self.requestChapterWith(index: index)
+            }else {
+                successSwitchChapter = 0
+                currentPageIndex = pageIndex <= 0 ? 0 : (pageIndex - 1)
+                self.updateChapterIndex(index: index)
+                self.loadPage(pageIndex: currentPageIndex)
+                if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
+                    self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
+                }
+            }
         }
     }
     
@@ -98,6 +112,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         
         var pageModels: [DUAPageModel] = [DUAPageModel]()
         if self.isReCutPage {
+            self.postReaderStateNotification(state: .busy)
             self.chapterCaches.removeAll()
         }else {
             pageModels = self.pageArrayFromCache(chapterIndex: chapter.chapterIndex)
@@ -148,6 +163,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             currentPageIndex = pageIndex <= 0 ? 0 : (pageIndex - 1)
             updateChapterIndex(index: chapter.chapterIndex)
             self.loadPage(pageIndex: currentPageIndex)
+            if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
+                self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
+            }
         }
         
         if isReCutPage {
@@ -166,6 +184,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             self.forwardCacheIfNeed(forward: false)
         }
         
+        if successSwitchChapter != 0 {
+            self.readChapterBy(index: successSwitchChapter, pageIndex: 1)
+        }
     }
     
     private func postReaderStateNotification(state: DUAReaderState) -> Void {
@@ -278,6 +299,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             tableView?.dataArray.removeAll()
             tableView?.dataArray = self.pageArrayFromCache(chapterIndex: currentChapterIndex)
             self.tableView?.cellIndex = pageIndex
+            if tableView?.dataArray == nil {
+                return
+            }
             
             self.tableView?.isReloading = true
             self.tableView?.reloadData()
@@ -357,11 +381,11 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
     
     private func cachePageArray(pageModels: [DUAPageModel], chapterIndex: Int) -> Void {
         self.chapterCaches[String(chapterIndex)] = pageModels
-        for item in self.chapterCaches.keys {
-            if Int(item)! - currentChapterIndex > 2 || Int(item)! - currentChapterIndex < -1 {
-                self.chapterCaches.removeValue(forKey: item)
-            }
-        }
+//        for item in self.chapterCaches.keys {
+//            if Int(item)! - currentChapterIndex > 2 || Int(item)! - currentChapterIndex < -1 {
+//                self.chapterCaches.removeValue(forKey: item)
+//            }
+//        }
     }
     
     
@@ -624,8 +648,8 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         
 //        进度信息必要时可以通过delegate回调出去
         print("当前阅读进度 章节 \(currentChapterIndex) 总页数 \(self.pageArrayFromCache(chapterIndex: currentChapterIndex).count) 当前页 \(currentPageIndex + 1)")
-        if self.delegate?.reader(reader: readerProgressUpdated: curPage: ) != nil {
-            self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex)
+        if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
+            self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
         }
     }
     
@@ -695,8 +719,8 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
                 self.requestNextChapterForTableView()
             }
             
-            if self.delegate?.reader(reader: readerProgressUpdated: curPage: ) != nil {
-                self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex)
+            if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
+                self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
             }
         }else if majorIndexPath!.row < tableView!.cellIndex {     //向前翻页
             prePageStartLocation = -1
@@ -713,8 +737,8 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             }
             self.statusBarForTableView?.curPageIndex = currentPageIndex
             
-            if self.delegate?.reader(reader: readerProgressUpdated: curPage: ) != nil {
-                self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex)
+            if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
+                self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
             }
         }
     }

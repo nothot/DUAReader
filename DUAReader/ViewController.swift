@@ -8,14 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController, DUAReaderDelegate {
+class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+    
     
     var msettingView = UIView()
     var mreader: DUAReader!
     var indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     var curPage = 0
     var curChapter = 0
-    
+    var curChapterTotalPages = 0
+    var chapterTitles: [String] = []
+    var sideBar: UIView?
+    var markList: [String] = []
+    var dataArray: [String] = []
     
     
     
@@ -23,7 +28,7 @@ class ViewController: UIViewController, DUAReaderDelegate {
         mreader = DUAReader()
         let configuration = DUAConfiguration.init()
         configuration.backgroundImage = UIImage.init(named: "backImg.jpg")
-        configuration.scrollType = .vertical
+//        configuration.scrollType = .vertical
         mreader.config = configuration
         mreader.delegate = self
         self.present(mreader, animated: true, completion: nil)
@@ -37,32 +42,124 @@ class ViewController: UIViewController, DUAReaderDelegate {
         mreader = DUAReader()
         let configuration = DUAConfiguration.init()
         configuration.backgroundImage = UIImage.init(named: "backImg.jpg")
-        configuration.scrollType = .vertical
+//        configuration.scrollType = .vertical
         configuration.bookType = .epub
         mreader.config = configuration
         mreader.delegate = self
         self.present(mreader, animated: true, completion: nil)
         
-//        let epubPath = Bundle.main.path(forResource: "卑鄙的圣人：曹操", ofType: "epub")
-        let epubPath = Bundle.main.path(forResource: "图文天下·中国通史", ofType: "epub")
-//        let epubPath = Bundle.main.path(forResource: "每天懂一点好玩心理学", ofType: "epub")
+        let epubPath = Bundle.main.path(forResource: "每天懂一点好玩心理学", ofType: "epub")
         mreader.readWith(filePath: epubPath!, pageIndex: 1)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        chapterTitles = [""]
+        markList = [""]
         indicatorView.center = CGPoint(x: 0.5*self.view.width, y: 0.5*self.view.height)
         indicatorView.hidesWhenStopped = true
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //    MARK:--侧边栏
+    func showSideBar() -> Void {
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        msettingView.removeFromSuperview()
+        self.sideBar = UIView.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        let dirBtn = UIButton.init(frame: CGRect(x: 0, y: 0, width: width/4, height: 30))
+        let markBtn = UIButton.init(frame: CGRect(x: width/4, y: 0, width: width/4, height: 30))
+        dirBtn.setTitle("目录", for: UIControlState.normal)
+        dirBtn.backgroundColor = UIColor.black
+        dirBtn.alpha = 0.8
+        dirBtn.setTitleColor(UIColor.white, for: .normal)
+        dirBtn.setTitleColor(UIColor.blue, for: .selected)
+        dirBtn.addTarget(self, action: #selector(onDirBtnClicked(sender:)), for: .touchUpInside)
+        
+        markBtn.setTitle("书签", for: .normal)
+        markBtn.backgroundColor = UIColor.black
+        markBtn.alpha = 0.8
+        markBtn.setTitleColor(UIColor.white, for: .normal)
+        markBtn.setTitleColor(UIColor.blue, for: .selected)
+        markBtn.setTitleColor(UIColor.red, for: UIControlState.highlighted)
+        markBtn.addTarget(self, action: #selector(onMarkBtnClicked(sender:)), for: .touchUpInside)
+        
+        let lineH = UIView(frame: CGRect(x: 0, y: 30, width: width/2, height: 1))
+        let lineV = UIView(frame: CGRect(x: width/4, y: 0, width: 1, height: 30))
+        lineV.backgroundColor = UIColor.white
+        lineH.backgroundColor = .white
+        
+        dataArray = chapterTitles
+        let tableView = UITableView.init(frame: CGRect(x: 0, y: 30, width: sideBar!.width/2, height: sideBar!.height - 30))
+        tableView.showsVerticalScrollIndicator = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.black
+        tableView.alpha = 0.8
+        tableView.separatorStyle = .none
+        
+        let window: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        window.addSubview(sideBar!)
+        sideBar?.addSubview(dirBtn)
+        sideBar?.addSubview(markBtn)
+        sideBar?.addSubview(tableView)
+        sideBar?.addSubview(lineH)
+        sideBar?.addSubview(lineV)
+
+
+        UIView.animate(withDuration: 0.2, animations: {() in
+            self.sideBar?.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        }, completion: {(complete) in
+
+        })
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(onSideViewClicked(ges:)))
+        tap.delegate = self
+        sideBar?.addGestureRecognizer(tap)
+        
     }
 
+    @objc func onSideViewClicked(ges: UITapGestureRecognizer) -> Void {
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        UIView.animate(withDuration: 0.2, animations: {() in
+            self.sideBar?.frame = CGRect(x: -width, y: 0, width: width, height: height)
+        }, completion: {(complete) in
+            self.sideBar?.removeFromSuperview()
+        })
+    }
+    
+    @objc func onDirBtnClicked(sender: UIButton) -> Void {
+        var table: UITableView = UITableView()
+        for item in sideBar!.subviews {
+            if item is UIButton {
+                (item as! UIButton).setTitleColor(UIColor.white, for: .normal)
+            }
+            if item is UITableView {
+                table = item as! UITableView
+            }
+        }
+        sender.setTitleColor(UIColor.red, for: .normal)
+        dataArray = chapterTitles
+        table.reloadData()
+    }
+    
+    @objc func onMarkBtnClicked(sender: UIButton) -> Void {
+        var table: UITableView = UITableView()
 
+        for item in sideBar!.subviews {
+            if item is UIButton {
+                (item as! UIButton).setTitleColor(UIColor.white, for: .normal)
+            }
+            if item is UITableView {
+                table = item as! UITableView
+            }
+        }
+        sender.setTitleColor(UIColor.red, for: .normal)
+        dataArray = markList
+        table.reloadData()
+    }
     
     //    MARK:--设置面板操作
     
@@ -79,6 +176,11 @@ class ViewController: UIViewController, DUAReaderDelegate {
             }
         })
     }
+    
+    @objc func sliderValueChanged(sender: UISlider) -> Void {
+        let index = floor(Float(curChapterTotalPages) * sender.value)
+        mreader.readChapterBy(index: curChapter, pageIndex: Int(index))
+    }
 
     
     @objc func onSettingItemClicked(button: UIButton) {
@@ -94,10 +196,10 @@ class ViewController: UIViewController, DUAReaderDelegate {
 //            下菜单
         case 200:
             print("切换上一章")
-            mreader.readChapterBy(index: curChapter - 1)
+            mreader.readChapterBy(index: curChapter - 1, pageIndex: 1)
         case 201:
             print("切换下一章")
-            mreader.readChapterBy(index: curChapter + 1)
+            mreader.readChapterBy(index: curChapter + 1, pageIndex: 1)
         case 202:
             mreader.config.scrollType = .curl
         case 203:
@@ -114,6 +216,7 @@ class ViewController: UIViewController, DUAReaderDelegate {
             mreader.config.backgroundImage = UIImage.init(named: "backImg2.jpg")
         case 209:
             print("章节目录")
+            self.showSideBar()
         case 210:
             mreader.config.fontSize -= 1
         case 211:
@@ -159,6 +262,11 @@ class ViewController: UIViewController, DUAReaderDelegate {
                 let button = view as! UIButton
                 button.addTarget(self, action: #selector(onSettingItemClicked(button:)), for: UIControlEvents.touchUpInside)
             }
+            if view is UISlider {
+                let slider = view as! UISlider
+                slider.value = Float(curPage) / Float(curChapterTotalPages)
+                slider.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: UIControlEvents.valueChanged)
+            }
         }
     }
     
@@ -173,10 +281,53 @@ class ViewController: UIViewController, DUAReaderDelegate {
         }
     }
     
-    func reader(reader: DUAReader, readerProgressUpdated curChapter: Int, curPage: Int) {
+    func reader(reader: DUAReader, readerProgressUpdated curChapter: Int, curPage: Int, totalPages: Int) {
         self.curPage = curPage
         self.curChapter = curChapter
+        self.curChapterTotalPages = totalPages
     }
     
+    func reader(reader: DUAReader, chapterTitles: [String]) {
+        self.chapterTitles = chapterTitles
+    }
+    
+    
+    //    MARK:--table view delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "reader.demo.cell")
+        if cell == nil {
+            cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "reader.demo.cell")
+            cell?.backgroundColor = UIColor.clear
+        }else {
+            for item in cell!.contentView.subviews {
+                item.removeFromSuperview()
+            }
+        }
+        let label = UILabel(frame: (cell?.bounds)!)
+        label.text = dataArray[indexPath.row]
+        label.textColor = UIColor.white
+        cell?.contentView.addSubview(label)
+        
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mreader.readChapterBy(index: indexPath.row + 1, pageIndex: 1)
+        sideBar?.removeFromSuperview()
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let point = gestureRecognizer.location(in: sideBar)
+        let rect = CGRect(x: 0, y: 0, width: sideBar!.width/2, height: sideBar!.height)
+        if rect.contains(point) {
+            return false
+        }
+        return true
+    }
 }
 
