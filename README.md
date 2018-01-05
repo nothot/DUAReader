@@ -30,3 +30,6 @@
 更多细节可参考demo
 
 可以引入源码或编译为framework进行使用，注意工程需要添加libxml2动态库依赖，可参看demo工程（epub解析需要）
+
+**说明**
+项目中引入了三个第三方framework是由objective-C编写，项目本身为swift编写
