@@ -1,0 +1,6 @@
+framework module DTCoreText {
+  umbrella header "DTCoreText.h"
+
+  export *
+  module * { export * }
+}

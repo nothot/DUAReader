@@ -1,0 +1,6 @@
+framework module TouchXML {
+  umbrella header "TouchXML.h"
+
+  export *
+  module * { export * }
+}
