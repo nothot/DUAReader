@@ -16,7 +16,8 @@
         mreader.readWith(filePath: bookPath!, pageIndex: 1)
 ```
 ```
-        mreader = DUAReader()
+        // epub示例
+        mreader = DUAReader()
         let configuration = DUAConfiguration.init()
         configuration.backgroundImage = UIImage.init(named: "backImg.jpg")
         configuration.bookType = .epub // 默认TXT类型
