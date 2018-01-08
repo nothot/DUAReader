@@ -13,7 +13,6 @@
 		C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */; };
 		C5915BB71FFE347800762D80 /* bottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB61FFE347800762D80 /* bottomMenu.xib */; };
 		C5915BBC1FFF1C3E00762D80 /* topMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BBB1FFF1C3E00762D80 /* topMenu.xib */; };
-		C5A6A3501FF4D08C008A8D59 /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5A6A34F1FF4D08C008A8D59 /* SettingView.xib */; };
 		C5AD54321FFC78A800366097 /* DUAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD54311FFC78A800366097 /* DUAUtils.swift */; };
 		C5B877C21FFCA26E008844C5 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5474F2A1FF363DE005B50B9 /* libxml2.tbd */; };
 		C5B877C41FFCA318008844C5 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B877C31FFCA318008844C5 /* ZipArchive.framework */; };
@@ -45,7 +44,6 @@
 		C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "每天懂一点好玩心理学.epub"; sourceTree = "<group>"; };
 		C5915BB61FFE347800762D80 /* bottomMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomMenu.xib; sourceTree = "<group>"; };
 		C5915BBB1FFF1C3E00762D80 /* topMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = topMenu.xib; sourceTree = "<group>"; };
-		C5A6A34F1FF4D08C008A8D59 /* SettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
 		C5AD54311FFC78A800366097 /* DUAUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAUtils.swift; sourceTree = "<group>"; };
 		C5B877C31FFCA318008844C5 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
 		C5B877C51FFCA395008844C5 /* TouchXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TouchXML.framework; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				C5BEC0CC1FF1EE30002FAC5A /* Assets.xcassets */,
 				C5BEC0CE1FF1EE30002FAC5A /* LaunchScreen.storyboard */,
 				C5BEC0D11FF1EE30002FAC5A /* Info.plist */,
-				C5A6A34F1FF4D08C008A8D59 /* SettingView.xib */,
 				C5915BBA1FFE349300762D80 /* Resources */,
 				C5B877C71FFCA73D008844C5 /* SwiftLibXML2 */,
 				C5BEC0D81FF1EEA9002FAC5A /* ThirdKit */,
@@ -296,7 +293,6 @@
 			files = (
 				C5BEC0D01FF1EE30002FAC5A /* LaunchScreen.storyboard in Resources */,
 				C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */,
-				C5A6A3501FF4D08C008A8D59 /* SettingView.xib in Resources */,
 				C5474F281FF3499D005B50B9 /* 郭黄之恋.txt in Resources */,
 				C5915BBC1FFF1C3E00762D80 /* topMenu.xib in Resources */,
 				C5915BB71FFE347800762D80 /* bottomMenu.xib in Resources */,
