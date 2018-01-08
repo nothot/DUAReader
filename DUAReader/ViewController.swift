@@ -28,11 +28,9 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         mreader = DUAReader()
         let configuration = DUAConfiguration.init()
         configuration.backgroundImage = UIImage.init(named: "backImg.jpg")
-//        configuration.scrollType = .vertical
         mreader.config = configuration
         mreader.delegate = self
         self.present(mreader, animated: true, completion: nil)
-        
         let bookPath = Bundle.main.path(forResource: "郭黄之恋", ofType: "txt")
         mreader.readWith(filePath: bookPath!, pageIndex: 1)
     
@@ -42,12 +40,10 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         mreader = DUAReader()
         let configuration = DUAConfiguration.init()
         configuration.backgroundImage = UIImage.init(named: "backImg.jpg")
-//        configuration.scrollType = .vertical
         configuration.bookType = .epub
         mreader.config = configuration
         mreader.delegate = self
         self.present(mreader, animated: true, completion: nil)
-        
         let epubPath = Bundle.main.path(forResource: "每天懂一点好玩心理学", ofType: "epub")
         mreader.readWith(filePath: epubPath!, pageIndex: 1)
     }
