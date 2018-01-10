@@ -179,15 +179,21 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
     }
 
     
+    /// 设置面板点击操作
+    ///
+    /// - Parameter button: 点击的button
+    /// - Discuss: 绝大部分设置均是通过设置reader的配置类config的属性来控制reader的行为的
     @objc func onSettingItemClicked(button: UIButton) {
         switch button.tag {
 //            上菜单
         case 100:
+            print("退出阅读器")
             mreader.dismiss(animated: true, completion: nil)
             mreader = nil
             msettingView.removeFromSuperview()
         case 101:
             print("书签")
+            
             
 //            下菜单
         case 200:
@@ -197,25 +203,32 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
             print("切换下一章")
             mreader.readChapterBy(index: curChapter + 1, pageIndex: 1)
         case 202:
+            print("仿真翻页")
             mreader.config.scrollType = .curl
         case 203:
-            print("覆盖动画")
+            print("覆盖翻页")
         case 204:
+            print("竖向滚动翻页")
             mreader.config.scrollType = .vertical
         case 205:
             print("无翻页动画")
         case 206:
+            print("设置背景1")
             mreader.config.backgroundImage = UIImage.init(named: "backImg.jpg")
         case 207:
+            print("设置背景2")
             mreader.config.backgroundImage = UIImage.init(named: "backImg1.jpg")
         case 208:
+            print("设置背景3")
             mreader.config.backgroundImage = UIImage.init(named: "backImg2.jpg")
         case 209:
-            print("章节目录")
+            print("展示章节目录")
             self.showSideBar()
         case 210:
+            print("调小字号")
             mreader.config.fontSize -= 1
         case 211:
+            print("调大字号")
             mreader.config.fontSize += 1
         default:
             print("nothing")

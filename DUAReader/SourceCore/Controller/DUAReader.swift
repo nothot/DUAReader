@@ -510,21 +510,21 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
     //    MARK:--属性观察器
     
     private func addObserverForConfiguration() -> Void {
-        self.config.didFontSizeChanged = {(fontSize) in
-            self.reloadReader()
+        self.config.didFontSizeChanged = {[weak self] (fontSize) in
+            self?.reloadReader()
         }
-        self.config.didLineHeightChanged = {(lineHeight) in
-            self.reloadReader()
+        self.config.didLineHeightChanged = {[weak self] (lineHeight) in
+            self?.reloadReader()
         }
-        self.config.didFontNameChanged = {(String) in
-            self.reloadReader()
+        self.config.didFontNameChanged = {[weak self] (String) in
+            self?.reloadReader()
         }
-        self.config.didBackgroundImageChanged = {(UIImage) in
-            self.loadBackgroundImage()
+        self.config.didBackgroundImageChanged = {[weak self] (UIImage) in
+            self?.loadBackgroundImage()
         }
-        self.config.didScrollTypeChanged = {(DUAReaderScrollType) in
-            self.loadReaderView()
-            self.loadPage(pageIndex: self.currentPageIndex)
+        self.config.didScrollTypeChanged = {[weak self] (DUAReaderScrollType) in
+            self?.loadReaderView()
+            self?.loadPage(pageIndex: self!.currentPageIndex)
         }
     }
     
