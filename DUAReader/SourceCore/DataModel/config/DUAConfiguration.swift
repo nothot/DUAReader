@@ -12,6 +12,7 @@ enum DUAReaderScrollType: Int {
     case curl
     case horizontal
     case vertical
+    case none
 }
 
 enum DUAReaderBookType {

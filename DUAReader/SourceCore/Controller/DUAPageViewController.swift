@@ -12,7 +12,11 @@ class DUAContainerPageViewController: UIPageViewController {
     var willStepIntoNextChapter = false
     var willStepIntoLastChapter = false
     
-    
+}
+
+class DUAtranslationControllerExt: DUAtranslationController {
+    var willStepIntoNextChapter = false
+    var willStepIntoLastChapter = false
 }
 
 class DUAPageViewController: UIViewController {

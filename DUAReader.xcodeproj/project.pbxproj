@@ -10,6 +10,7 @@
 		C5474F261FF3430E005B50B9 /* UIView+subScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F251FF3430E005B50B9 /* UIView+subScript.swift */; };
 		C5474F281FF3499D005B50B9 /* 郭黄之恋.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */; };
 		C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */; };
+		C57026772007590600E2288D /* DUAtranslationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57026762007590600E2288D /* DUAtranslationController.swift */; };
 		C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */; };
 		C5915BB71FFE347800762D80 /* bottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB61FFE347800762D80 /* bottomMenu.xib */; };
 		C5915BBC1FFF1C3E00762D80 /* topMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BBB1FFF1C3E00762D80 /* topMenu.xib */; };
@@ -41,6 +42,7 @@
 		C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "郭黄之恋.txt"; sourceTree = "<group>"; };
 		C5474F2A1FF363DE005B50B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAEpubDataParser.swift; sourceTree = "<group>"; };
+		C57026762007590600E2288D /* DUAtranslationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAtranslationController.swift; sourceTree = "<group>"; };
 		C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "每天懂一点好玩心理学.epub"; sourceTree = "<group>"; };
 		C5915BB61FFE347800762D80 /* bottomMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomMenu.xib; sourceTree = "<group>"; };
 		C5915BBB1FFF1C3E00762D80 /* topMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = topMenu.xib; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				C5BEC0DF1FF1EF67002FAC5A /* DUAReader.swift */,
 				C5BEC0E11FF1EF95002FAC5A /* DUAPageViewController.swift */,
 				C5BEC0E31FF1EFAB002FAC5A /* DUABackViewController.swift */,
+				C57026762007590600E2288D /* DUAtranslationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				C5BEC0EC1FF1F0D6002FAC5A /* DUAChapterModel.swift in Sources */,
 				C5AD54321FFC78A800366097 /* DUAUtils.swift in Sources */,
 				C5BEC0E21FF1EF95002FAC5A /* DUAPageViewController.swift in Sources */,
+				C57026772007590600E2288D /* DUAtranslationController.swift in Sources */,
 				C5BEC0F41FF1F15E002FAC5A /* DUAConfiguration.swift in Sources */,
 				C5F49C8B1FF5193F00FDFF3A /* DUATableView.swift in Sources */,
 				C5BEC0F21FF1F14D002FAC5A /* DUATextDataParser.swift in Sources */,

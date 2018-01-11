@@ -206,12 +206,14 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
             print("仿真翻页")
             mreader.config.scrollType = .curl
         case 203:
-            print("覆盖翻页")
+            print("平移翻页")
+            mreader.config.scrollType = .horizontal
         case 204:
             print("竖向滚动翻页")
             mreader.config.scrollType = .vertical
         case 205:
             print("无翻页动画")
+            mreader.config.scrollType = .none
         case 206:
             print("设置背景1")
             mreader.config.backgroundImage = UIImage.init(named: "backImg.jpg")
