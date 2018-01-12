@@ -17,10 +17,11 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
     var curPage = 0
     var curChapter = 0
     var curChapterTotalPages = 0
+    var curBookName = ""
     var chapterTitles: [String] = []
     var sideBar: UIView?
-    var markList: [String] = []
     var dataArray: [String] = []
+    var marksArray: [String: [String: [Int]]] = [:]
     
     
     
@@ -33,6 +34,9 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         self.present(mreader, animated: true, completion: nil)
         let bookPath = Bundle.main.path(forResource: "郭黄之恋", ofType: "txt")
         mreader.readWith(filePath: bookPath!, pageIndex: 1)
+        
+//        记录阅读的书，demo使用
+        curBookName = "郭黄之恋"
     
     }
     
@@ -46,12 +50,15 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         self.present(mreader, animated: true, completion: nil)
         let epubPath = Bundle.main.path(forResource: "每天懂一点好玩心理学", ofType: "epub")
         mreader.readWith(filePath: epubPath!, pageIndex: 1)
+        
+//        记录阅读的书，demo使用
+        curBookName = "每天懂一点好玩心理学"
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         chapterTitles = [""]
-        markList = [""]
         indicatorView.center = CGPoint(x: 0.5*self.view.width, y: 0.5*self.view.height)
         indicatorView.hidesWhenStopped = true
         
@@ -138,6 +145,7 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         }
         sender.setTitleColor(UIColor.red, for: .normal)
         dataArray = chapterTitles
+        table.tag = 0
         table.reloadData()
     }
     
@@ -153,8 +161,71 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
             }
         }
         sender.setTitleColor(UIColor.red, for: .normal)
-        dataArray = markList
+
+        table.tag = 100
+        dataArray = []
+        let marks = marksArray[curBookName]
+        var markList: [String: [Int]] = [:]
+        if marks != nil {
+            markList = marks!
+        }
+        if markList.isEmpty == false {
+            for key in markList.keys {
+                for item in markList[key]! {
+                    let itemString = "第\(key)章 第\(item)页"
+                    dataArray.append(itemString)
+                }
+            }
+        }
+        
         table.reloadData()
+    }
+    
+    func saveBookMarks(button: UIButton) -> Void {
+        let bookMarkBtn = button as! BookMarkButton
+        if bookMarkBtn.isClicked {
+            bookMarkBtn.isClicked = false
+        }else {
+            bookMarkBtn.isClicked = true
+        }
+        let marks = marksArray[curBookName]
+        var markList: [String: [Int]] = [:]
+        if marks != nil {
+            markList = marks!
+        }
+        if markList.isEmpty {
+            markList[String(curChapter)] = [curPage]
+        }else {
+            if bookMarkBtn.isClicked {
+//                写入新书签
+                for key in markList.keys {
+                    if Int(key) == curChapter {
+                        if markList[key]!.contains(curPage) == false {
+                            markList[key]!.append(curPage)
+                            break
+                        }
+                    }
+                }
+                if markList.keys.contains(String(curChapter)) == false {
+                    markList[String(curChapter)] = [curPage]
+                }
+            }else {
+//                移除旧书签
+                for (index, item) in markList[String(curChapter)]!.enumerated() {
+                    if item == curPage {
+                        markList[String(curChapter)]?.remove(at: index)
+                        break
+                    }
+                }
+            }
+        }
+        if markList[String(curChapter)]!.isEmpty {
+            markList.removeValue(forKey: String(curChapter))
+        }
+        marksArray[curBookName] = markList
+        
+        // !!!注：这里书签只保存在内存，实际应用应当缓存在本地，只需将MarkList序列化一下即可
+        
     }
     
     //    MARK:--设置面板操作
@@ -171,6 +242,8 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
                 self.msettingView.removeFromSuperview()
             }
         })
+        
+
     }
     
     @objc func sliderValueChanged(sender: UISlider) -> Void {
@@ -193,7 +266,7 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
             msettingView.removeFromSuperview()
         case 101:
             print("书签")
-            
+            self.saveBookMarks(button: button)
             
 //            下菜单
         case 200:
@@ -212,7 +285,7 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
             print("竖向滚动翻页")
             mreader.config.scrollType = .vertical
         case 205:
-            print("无翻页动画")
+            print("无动画翻页")
             mreader.config.scrollType = .none
         case 206:
             print("设置背景1")
@@ -279,6 +352,24 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
                 slider.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: UIControlEvents.valueChanged)
             }
         }
+        
+//        查询历史书签
+        for view in topMenu!.subviews.first!.subviews {
+            if view is BookMarkButton {
+                let button = view as! BookMarkButton
+                let marks = marksArray[curBookName]
+                var markList: [String: [Int]] = [:]
+                if marks != nil {
+                    markList = marks!
+                }
+                let chapterMarks = markList[String(curChapter)]
+                if chapterMarks != nil {
+                    if chapterMarks!.contains(curPage) {
+                        button.isClicked = true
+                    }
+                }
+            }
+        }
     }
     
     func reader(reader: DUAReader, readerStateChanged state: DUAReaderState) {
@@ -328,6 +419,17 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag != 0 {
+            let cellText = self.dataArray[indexPath.row]
+            let texts = cellText.split(separator: " ")
+            let chapterStr = String(texts.first!)
+            let chapterIndex = Int(String(chapterStr[chapterStr.index(chapterStr.startIndex, offsetBy: 1)]))
+            let pageStr = String(texts.last!)
+            let pageIndex = Int(String(pageStr[pageStr.index(pageStr.startIndex, offsetBy: 1)]))
+            mreader.readChapterBy(index: chapterIndex!, pageIndex: pageIndex!)
+            sideBar?.removeFromSuperview()
+            return
+        }
         mreader.readChapterBy(index: indexPath.row + 1, pageIndex: 1)
         sideBar?.removeFromSuperview()
     }
@@ -341,4 +443,7 @@ class ViewController: UIViewController, DUAReaderDelegate, UITableViewDelegate, 
         return true
     }
 }
+
+
+
 

@@ -11,6 +11,7 @@
 		C5474F281FF3499D005B50B9 /* 郭黄之恋.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */; };
 		C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */; };
 		C57026772007590600E2288D /* DUAtranslationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57026762007590600E2288D /* DUAtranslationController.swift */; };
+		C5742F6B20085180000C077E /* BookMarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5742F6A20085180000C077E /* BookMarkButton.swift */; };
 		C5915BB51FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */; };
 		C5915BB71FFE347800762D80 /* bottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BB61FFE347800762D80 /* bottomMenu.xib */; };
 		C5915BBC1FFF1C3E00762D80 /* topMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5915BBB1FFF1C3E00762D80 /* topMenu.xib */; };
@@ -43,6 +44,7 @@
 		C5474F2A1FF363DE005B50B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAEpubDataParser.swift; sourceTree = "<group>"; };
 		C57026762007590600E2288D /* DUAtranslationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAtranslationController.swift; sourceTree = "<group>"; };
+		C5742F6A20085180000C077E /* BookMarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkButton.swift; sourceTree = "<group>"; };
 		C5915BB41FFE2C6D00762D80 /* 每天懂一点好玩心理学.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "每天懂一点好玩心理学.epub"; sourceTree = "<group>"; };
 		C5915BB61FFE347800762D80 /* bottomMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bottomMenu.xib; sourceTree = "<group>"; };
 		C5915BBB1FFF1C3E00762D80 /* topMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = topMenu.xib; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				C5BEC0D71FF1EE9B002FAC5A /* SourceCore */,
 				C5BEC0C51FF1EE30002FAC5A /* AppDelegate.swift */,
 				C5BEC0C71FF1EE30002FAC5A /* ViewController.swift */,
+				C5742F6A20085180000C077E /* BookMarkButton.swift */,
 				C5BEC0C91FF1EE30002FAC5A /* Main.storyboard */,
 				C5BEC0CC1FF1EE30002FAC5A /* Assets.xcassets */,
 				C5BEC0CE1FF1EE30002FAC5A /* LaunchScreen.storyboard */,
@@ -322,6 +325,7 @@
 				C5BEC0C81FF1EE30002FAC5A /* ViewController.swift in Sources */,
 				C5BEC0E61FF1EFD1002FAC5A /* DUAStatusBar.swift in Sources */,
 				C5BEC0E01FF1EF67002FAC5A /* DUAReader.swift in Sources */,
+				C5742F6B20085180000C077E /* BookMarkButton.swift in Sources */,
 				C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */,
 				C5BEC0EE1FF1F0EB002FAC5A /* DUAPageModel.swift in Sources */,
 				C5BEC0C61FF1EE30002FAC5A /* AppDelegate.swift in Sources */,
