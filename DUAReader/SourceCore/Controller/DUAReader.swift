@@ -23,45 +23,46 @@ protocol DUAReaderDelegate: NSObjectProtocol {
 }
 
 class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate, DUATranslationProtocol {
-    
+    /// 配置类
     public var config: DUAConfiguration!
-    
+    /// 代理
     public var delegate: DUAReaderDelegate?
-    
+    /// 章节缓存（分页后的页面数组）
     private var chapterCaches: [String: [DUAPageModel]] = [String: [DUAPageModel]]()
-    
+    /// chapter model cache
     private var chapterModels = [String: DUAChapterModel]()
-    
+    /// 数据解析类
     private var dataParser: DUADataParser = DUADataParser()
-    
+    /// 缓存队列
     private var cacheQueue: DispatchQueue = DispatchQueue(label: "duareader.cache.queue")
-    
+    /// page vc
     private var pageVC: DUAContainerPageViewController?
-    
+    /// table view
     private var tableView: DUATableView?
-    
+    /// translation vc
     private var translationVC: DUAtranslationControllerExt?
-    
+    /// 状态栏
     private var statusBar: DUAStatusBar?
-    
+    /// 是否重分页
     private var isReCutPage: Bool = false
-    
+    /// 当前页面
     private var currentPageIndex: Int = 1
-    
+    /// 当前章节
     private var currentChapterIndex: Int = 0
+    /// 分页前当前页首字符索引
     
+    /// 重分页后如何定位阅读进度？
+    /// 首先记录分页前当前页面首字符在本章的索引，重分页后根据索引确定用户先前看的页面在章节中新的位置
     private var prePageStartLocation: Int = -1
-    
-    private var state: DUAReaderState = DUAReaderState.ready
-    
+    /// 首次进阅读器
     private var firstIntoReader = true
-    
+    /// 页面饥饿
     private var pageHunger = false
-    
+    /// 解析后的所有章节model
     private var totalChapterModels: [DUAChapterModel] = []
-    
+    /// 对table view而言，status bar是放在reader view上的，其他模式则是放在每个page页面上
     private var statusBarForTableView: DUAStatusBar?
-    
+    /// 是否成功切换到某章节，成功为0，不成功则记录未成功切换的章节index，当指定跳至某章节时使用
     var successSwitchChapter = 0
     
     
@@ -71,7 +72,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         return true
     }
     
-    //    MARK:--对外接口
+    // MARK:--对外接口
     public func readWith(filePath: String, pageIndex: Int) -> Void {
         
         self.postReaderStateNotification(state: .busy)
@@ -103,7 +104,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         }
     }
     
-    //    MARK:--custom method
+    // MARK:-- 以下为私有方法
     private func readWith(chapter: DUAChapterModel, pageIndex: Int) -> Void {
         
         chapterModels[String(chapter.chapterIndex)] = chapter
@@ -181,7 +182,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             currentPageIndex = newIndex
             self.loadPage(pageIndex: currentPageIndex)
             
-//            触发预缓存
+            /// 触发预缓存
             self.forwardCacheIfNeed(forward: true)
             self.forwardCacheIfNeed(forward: false)
         }
@@ -199,6 +200,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         }
     }
     
+    /// 弹出设置菜单
+    ///
+    /// - Parameter ges: 单击手势
     @objc private func pagingTap(ges: UITapGestureRecognizer) -> Void {
         let tapPoint = ges.location(in: self.view)
         let width = UIScreen.main.bounds.size.width
@@ -210,7 +214,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         }
     }
     
-    //    MARK:--UI渲染
+    // MARK:--UI渲染
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -274,6 +278,9 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         self.addStatusBarTo(view: self.view, totalCounts: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count, curPage: currentPageIndex)
     }
     
+    /// bool值意味着平移翻页还是无动画翻页
+    ///
+    /// - Parameter animating: none
     func loadTranslationVC(animating: Bool) -> Void {
         
         self.clearReaderViewIfNeed()
@@ -310,7 +317,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             self.statusBarForTableView?.totalPageCounts = (tableView?.dataArray.count)!
             self.statusBarForTableView?.curPageIndex = currentPageIndex
             
-//            当加载的页码为最后一页，需要手动触发一次下一章的请求
+            /// 当加载的页码为最后一页，需要手动触发一次下一章的请求
             if self.currentPageIndex == self.pageArrayFromCache(chapterIndex: self.currentChapterIndex).count - 1 {
                 self.requestNextChapterForTableView()
             }
@@ -384,8 +391,15 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         }
     }
     
-    //    MARK:--数据处理
+    /// MARK:--数据处理
     
+    
+    /// 仿真、平移、无动画翻页模式使用
+    ///
+    /// - Parameters:
+    ///   - pageIndex: 页面索引
+    ///   - chapterIndex: 章节索引
+    /// - Returns: 单个page页面
     private func getPageVCWith(pageIndex: Int, chapterIndex: Int) -> DUAPageViewController? {
         let page = DUAPageViewController()
         page.index = pageIndex
@@ -420,11 +434,11 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
     
     private func cachePageArray(pageModels: [DUAPageModel], chapterIndex: Int) -> Void {
         self.chapterCaches[String(chapterIndex)] = pageModels
-//        for item in self.chapterCaches.keys {
-//            if Int(item)! - currentChapterIndex > 2 || Int(item)! - currentChapterIndex < -1 {
-//                self.chapterCaches.removeValue(forKey: item)
-//            }
-//        }
+///     for item in self.chapterCaches.keys {
+///         if Int(item)! - currentChapterIndex > 2 || Int(item)! - currentChapterIndex < -1 {
+///             self.chapterCaches.removeValue(forKey: item)
+///         }
+///     }
     }
     
     
@@ -432,6 +446,11 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         if self.pageArrayFromCache(chapterIndex: index).isEmpty == false {
             return
         }
+    
+        /// 这里在书籍解析后直接保存了所有章节model，故直接取即可
+        
+        /// 对于分章节阅读的情况，每个章节可能需要通过网络请求获取，完成后调用readWithchapter方法即可
+        
         let chapter = totalChapterModels[index - 1]
         self.readWith(chapter: chapter, pageIndex: 1)
     }
@@ -443,9 +462,13 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         print("进入第 \(index) 章")
         let forward = currentChapterIndex > index ? false : true
         currentChapterIndex = index
+        
+        /// 每当章节切换时触发预缓存
         self.forwardCacheIfNeed(forward: forward)
     }
     
+    
+    /// 请求上个章节 for tableview
     private func requestLastChapterForTableView() -> Void {
         tableView?.scrollDirection = .up
         if currentChapterIndex - 1 <= 0 {
@@ -454,7 +477,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         self.requestChapterWith(index: currentChapterIndex - 1)
         let lastPages = self.pageArrayFromCache(chapterIndex: currentChapterIndex - 1)
         if lastPages.isEmpty {
-            //                    页面饥饿
+            /// 页面饥饿
             pageHunger = true
             self.postReaderStateNotification(state: .busy)
             return
@@ -476,6 +499,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         
     }
     
+    /// 请求下个章节 for tableview
     private func requestNextChapterForTableView() -> Void {
         tableView?.scrollDirection = .down
         if currentChapterIndex + 1 > totalChapterModels.count {
@@ -484,7 +508,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         self.requestChapterWith(index: currentChapterIndex + 1)
         let nextPages = self.pageArrayFromCache(chapterIndex: currentChapterIndex + 1)
         if nextPages.isEmpty {
-//                    页面饥饿
+            ///                 页面饥饿
             pageHunger = true
             self.postReaderStateNotification(state: .busy)
             return
@@ -500,8 +524,15 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         self.tableView?.endUpdates()
     }
     
-    //    MARK:--预缓存
+    // MARK:--预缓存
     
+    
+    /// 为何要预缓存？
+    /// 本阅读器是按照逐个章节的方式阅读的（便于分章阅读，例如连载小说等），如果当前章节阅读结束时请求下一章数据
+    /// 那么章节解析分页均会耗时（当然你可以不等分页全部完成就直接展示已经分好的页面，以减少用户等待，那是另一套
+    /// 逻辑了）。因此每当用户跨入新的一章，程序自动触发当前章下一章的请求，提前准备好数据，以实现章节无缝切换
+    ///
+    /// - Parameter forward: 向前缓存还是向后缓存
     private func forwardCacheIfNeed(forward: Bool) -> Void {
         let predictIndex = forward ? currentChapterIndex + 1 : currentChapterIndex - 1
         if predictIndex <= 0 || predictIndex > totalChapterModels.count {
@@ -546,7 +577,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         })
     }
     
-    //    MARK:--属性观察器
+    // MARK:--属性观察器
     
     private func addObserverForConfiguration() -> Void {
         self.config.didFontSizeChanged = {[weak self] (fontSize) in
@@ -577,7 +608,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         self.readWith(chapter: chapter!, pageIndex: currentPageIndex)
     }
     
-    //    MARK:--PageVC Delegate
+    // MARK:--PageVC Delegate
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         print("向前翻页")
@@ -597,7 +628,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
                 self.requestChapterWith(index: currentChapterIndex - 1)
                 nextIndex = self.pageArrayFromCache(chapterIndex: currentChapterIndex - 1).count - 1
                 let nextPage = self.getPageVCWith(pageIndex: nextIndex, chapterIndex: currentChapterIndex - 1)
-                //            需要的页面并没有准备好，此时出现页面饥饿
+                ///         需要的页面并没有准备好，此时出现页面饥饿
                 if nextPage == nil {
                     self.postReaderStateNotification(state: .busy)
                     pageHunger = true
@@ -643,7 +674,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             pageVC?.willStepIntoNextChapter = true
             self.requestChapterWith(index: currentChapterIndex + 1)
             let nextPage = self.getPageVCWith(pageIndex: 0, chapterIndex: currentChapterIndex + 1)
-//            需要的页面并没有准备好，此时出现页面饥饿
+            ///         需要的页面并没有准备好，此时出现页面饥饿
             if nextPage == nil {
                 self.postReaderStateNotification(state: .busy)
                 pageHunger = true
@@ -719,7 +750,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
             
         }
         
-        //        进度信息必要时可以通过delegate回调出去
+        ///     进度信息必要时可以通过delegate回调出去
         print("当前阅读进度 章节 \(currentChapterIndex) 总页数 \(self.pageArrayFromCache(chapterIndex: currentChapterIndex).count) 当前页 \(currentPageIndex + 1)")
         if self.delegate?.reader(reader: readerProgressUpdated: curPage: totalPages: ) != nil {
             self.delegate?.reader(reader: self, readerProgressUpdated: currentChapterIndex, curPage: currentPageIndex + 1, totalPages: self.pageArrayFromCache(chapterIndex: currentChapterIndex).count)
@@ -728,7 +759,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
     }
     
     
-    //    MARK:--Table View Delegate
+    // MARK:--Table View Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return config.contentFrame.height
@@ -817,7 +848,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         }
     }
     
-    //    MARK: DUATranslationController Delegate
+    // MARK: DUATranslationController Delegate
     
     func translationController(translationController: DUAtranslationController, controllerAfter controller: UIViewController) -> UIViewController? {
         print("向后翻页")
@@ -834,7 +865,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
                 translationVC?.willStepIntoNextChapter = true
                 self.requestChapterWith(index: currentChapterIndex + 1)
                 nextPage = self.getPageVCWith(pageIndex: 0, chapterIndex: currentChapterIndex + 1)
-                //            需要的页面并没有准备好，此时出现页面饥饿
+                ///         需要的页面并没有准备好，此时出现页面饥饿
                 if nextPage == nil {
                     self.postReaderStateNotification(state: .busy)
                     pageHunger = true
@@ -863,7 +894,7 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
                 self.requestChapterWith(index: currentChapterIndex - 1)
                 nextIndex = self.pageArrayFromCache(chapterIndex: currentChapterIndex - 1).count - 1
                 nextPage = self.getPageVCWith(pageIndex: nextIndex, chapterIndex: currentChapterIndex - 1)
-                //            需要的页面并没有准备好，此时出现页面饥饿
+                ///         需要的页面并没有准备好，此时出现页面饥饿
                 if nextPage == nil {
                     self.postReaderStateNotification(state: .busy)
                     pageHunger = true
