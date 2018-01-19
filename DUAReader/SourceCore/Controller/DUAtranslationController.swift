@@ -6,7 +6,7 @@
 //  Copyright © 2018年 nothot. All rights reserved.
 //
 
-/// 页面切换控件，可用于阅读器平移翻页，无效果翻页
+/// 本文件为独立的UI控件，实现页面切换，可用于阅读器平移翻页，无动画翻页
 
 import UIKit
 
@@ -276,7 +276,7 @@ class DUAtranslationController: UIViewController, UIGestureRecognizerDelegate {
     }
     
 
-    //    MARKK: gesture delegate
+    //    MARK: gesture delegate
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer is UITapGestureRecognizer {
             let tempWidth = screenWidth/3

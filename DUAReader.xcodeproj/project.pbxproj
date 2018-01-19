@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C52A9FC8200CA35200676D29 /* DUAAttributedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A9FC7200CA35200676D29 /* DUAAttributedView.swift */; };
+		C52A9FF52010B90600676D29 /* DUAConVexLensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52A9FF42010B90600676D29 /* DUAConVexLensView.swift */; };
 		C5474F261FF3430E005B50B9 /* UIView+subScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F251FF3430E005B50B9 /* UIView+subScript.swift */; };
 		C5474F281FF3499D005B50B9 /* 郭黄之恋.txt in Resources */ = {isa = PBXBuildFile; fileRef = C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */; };
 		C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5474F2C1FF37078005B50B9 /* DUAEpubDataParser.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C52A9FC7200CA35200676D29 /* DUAAttributedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAAttributedView.swift; sourceTree = "<group>"; };
+		C52A9FF42010B90600676D29 /* DUAConVexLensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DUAConVexLensView.swift; sourceTree = "<group>"; };
 		C5474F251FF3430E005B50B9 /* UIView+subScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+subScript.swift"; sourceTree = "<group>"; };
 		C5474F271FF3499D005B50B9 /* 郭黄之恋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "郭黄之恋.txt"; sourceTree = "<group>"; };
 		C5474F2A1FF363DE005B50B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -188,6 +192,8 @@
 				C5BEC0E51FF1EFD1002FAC5A /* DUAStatusBar.swift */,
 				C5F49C8A1FF5193F00FDFF3A /* DUATableView.swift */,
 				C5F49C8C1FF5E43500FDFF3A /* DUATableViewCell.swift */,
+				C52A9FC7200CA35200676D29 /* DUAAttributedView.swift */,
+				C52A9FF42010B90600676D29 /* DUAConVexLensView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,11 +330,13 @@
 				C5474F261FF3430E005B50B9 /* UIView+subScript.swift in Sources */,
 				C5BEC0C81FF1EE30002FAC5A /* ViewController.swift in Sources */,
 				C5BEC0E61FF1EFD1002FAC5A /* DUAStatusBar.swift in Sources */,
+				C52A9FC8200CA35200676D29 /* DUAAttributedView.swift in Sources */,
 				C5BEC0E01FF1EF67002FAC5A /* DUAReader.swift in Sources */,
 				C5742F6B20085180000C077E /* BookMarkButton.swift in Sources */,
 				C5474F2D1FF37078005B50B9 /* DUAEpubDataParser.swift in Sources */,
 				C5BEC0EE1FF1F0EB002FAC5A /* DUAPageModel.swift in Sources */,
 				C5BEC0C61FF1EE30002FAC5A /* AppDelegate.swift in Sources */,
+				C52A9FF52010B90600676D29 /* DUAConVexLensView.swift in Sources */,
 				C5BEC0F01FF1F11F002FAC5A /* DUADataParser.swift in Sources */,
 				C5F49C8D1FF5E43500FDFF3A /* DUATableViewCell.swift in Sources */,
 				C5BEC0E41FF1EFAB002FAC5A /* DUABackViewController.swift in Sources */,

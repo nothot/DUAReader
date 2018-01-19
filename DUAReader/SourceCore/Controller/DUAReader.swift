@@ -393,7 +393,8 @@ class DUAReader: UIViewController, UIPageViewControllerDelegate, UIPageViewContr
         if self.config.backgroundImage != nil {
             page.backgroundImage = self.config.backgroundImage
         }
-        let dtLabel = DTAttributedLabel.init(frame: self.config.contentFrame)
+        let dtLabel = DUAAttributedView.init(frame: CGRect(x: 0, y: config.contentFrame.origin.y, width: self.view.width, height: config.contentFrame.height))
+        dtLabel.edgeInsets = UIEdgeInsets.init(top: 0, left: config.contentFrame.origin.x, bottom: 0, right: config.contentFrame.origin.x)
         
         let pageArray = self.pageArrayFromCache(chapterIndex: chapterIndex)
         if pageArray.isEmpty {
