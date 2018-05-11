@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10271E9720A5A7C700542675 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10271E9620A5A7C700542675 /* AppDelegate.m */; };
+		10271E9A20A5A7C700542675 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10271E9920A5A7C700542675 /* ViewController.m */; };
+		10271E9D20A5A7C700542675 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10271E9B20A5A7C700542675 /* Main.storyboard */; };
+		10271E9F20A5A7C900542675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10271E9E20A5A7C900542675 /* Assets.xcassets */; };
+		10271EA220A5A7C900542675 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10271EA020A5A7C900542675 /* LaunchScreen.storyboard */; };
+		10271EA520A5A7C900542675 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10271EA420A5A7C900542675 /* main.m */; };
+		10271EC720A5AA8500542675 /* DUAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB020A5AA8500542675 /* DUAUtils.swift */; };
+		10271EC820A5AA8500542675 /* UIView+subScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB120A5AA8500542675 /* UIView+subScript.swift */; };
+		10271EC920A5AA8500542675 /* DUAPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB320A5AA8500542675 /* DUAPageViewController.swift */; };
+		10271ECA20A5AA8500542675 /* DUAReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB420A5AA8500542675 /* DUAReader.swift */; };
+		10271ECB20A5AA8600542675 /* DUABackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB520A5AA8500542675 /* DUABackViewController.swift */; };
+		10271ECC20A5AA8600542675 /* DUAtranslationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB620A5AA8500542675 /* DUAtranslationController.swift */; };
+		10271ECD20A5AA8600542675 /* DUAConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EB920A5AA8500542675 /* DUAConfiguration.swift */; };
+		10271ECE20A5AA8600542675 /* DUADataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EBB20A5AA8500542675 /* DUADataParser.swift */; };
+		10271ECF20A5AA8600542675 /* DUAEpubDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EBC20A5AA8500542675 /* DUAEpubDataParser.swift */; };
+		10271ED020A5AA8600542675 /* DUATextDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EBD20A5AA8500542675 /* DUATextDataParser.swift */; };
+		10271ED120A5AA8600542675 /* DUAChapterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EBF20A5AA8500542675 /* DUAChapterModel.swift */; };
+		10271ED220A5AA8600542675 /* DUAPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC020A5AA8500542675 /* DUAPageModel.swift */; };
+		10271ED320A5AA8600542675 /* DUAAttributedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC220A5AA8500542675 /* DUAAttributedView.swift */; };
+		10271ED420A5AA8600542675 /* DUATableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC320A5AA8500542675 /* DUATableView.swift */; };
+		10271ED520A5AA8600542675 /* DUAConVexLensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC420A5AA8500542675 /* DUAConVexLensView.swift */; };
+		10271ED620A5AA8600542675 /* DUATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC520A5AA8500542675 /* DUATableViewCell.swift */; };
+		10271ED720A5AA8600542675 /* DUAStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10271EC620A5AA8500542675 /* DUAStatusBar.swift */; };
+		10271EDC20A5AAE100542675 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10271ED920A5AAE100542675 /* ZipArchive.framework */; };
+		10271EDD20A5AAE100542675 /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10271EDA20A5AAE100542675 /* DTCoreText.framework */; };
+		10271EDE20A5AAE100542675 /* TouchXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10271EDB20A5AAE100542675 /* TouchXML.framework */; };
+		10271EE320A5AB0D00542675 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10271EE220A5AB0D00542675 /* libxml2.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		10271E9220A5A7C700542675 /* OCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10271E9520A5A7C700542675 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10271E9620A5A7C700542675 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10271E9820A5A7C700542675 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10271E9920A5A7C700542675 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		10271E9C20A5A7C700542675 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		10271E9E20A5A7C900542675 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		10271EA120A5A7C900542675 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		10271EA320A5A7C900542675 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10271EA420A5A7C900542675 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10271EAB20A5A84800542675 /* OCDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		10271EB020A5AA8500542675 /* DUAUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAUtils.swift; sourceTree = "<group>"; };
+		10271EB120A5AA8500542675 /* UIView+subScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+subScript.swift"; sourceTree = "<group>"; };
+		10271EB320A5AA8500542675 /* DUAPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAPageViewController.swift; sourceTree = "<group>"; };
+		10271EB420A5AA8500542675 /* DUAReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAReader.swift; sourceTree = "<group>"; };
+		10271EB520A5AA8500542675 /* DUABackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUABackViewController.swift; sourceTree = "<group>"; };
+		10271EB620A5AA8500542675 /* DUAtranslationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAtranslationController.swift; sourceTree = "<group>"; };
+		10271EB920A5AA8500542675 /* DUAConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAConfiguration.swift; sourceTree = "<group>"; };
+		10271EBB20A5AA8500542675 /* DUADataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUADataParser.swift; sourceTree = "<group>"; };
+		10271EBC20A5AA8500542675 /* DUAEpubDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAEpubDataParser.swift; sourceTree = "<group>"; };
+		10271EBD20A5AA8500542675 /* DUATextDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUATextDataParser.swift; sourceTree = "<group>"; };
+		10271EBF20A5AA8500542675 /* DUAChapterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAChapterModel.swift; sourceTree = "<group>"; };
+		10271EC020A5AA8500542675 /* DUAPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAPageModel.swift; sourceTree = "<group>"; };
+		10271EC220A5AA8500542675 /* DUAAttributedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAAttributedView.swift; sourceTree = "<group>"; };
+		10271EC320A5AA8500542675 /* DUATableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUATableView.swift; sourceTree = "<group>"; };
+		10271EC420A5AA8500542675 /* DUAConVexLensView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAConVexLensView.swift; sourceTree = "<group>"; };
+		10271EC520A5AA8500542675 /* DUATableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUATableViewCell.swift; sourceTree = "<group>"; };
+		10271EC620A5AA8500542675 /* DUAStatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUAStatusBar.swift; sourceTree = "<group>"; };
+		10271ED920A5AAE100542675 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
+		10271EDA20A5AAE100542675 /* DTCoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTCoreText.framework; sourceTree = "<group>"; };
+		10271EDB20A5AAE100542675 /* TouchXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TouchXML.framework; sourceTree = "<group>"; };
+		10271EE020A5AAEE00542675 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		10271EE220A5AB0D00542675 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10271E8F20A5A7C700542675 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10271EE320A5AB0D00542675 /* libxml2.tbd in Frameworks */,
+				10271EDE20A5AAE100542675 /* TouchXML.framework in Frameworks */,
+				10271EDD20A5AAE100542675 /* DTCoreText.framework in Frameworks */,
+				10271EDC20A5AAE100542675 /* ZipArchive.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10271E8920A5A7C700542675 = {
+			isa = PBXGroup;
+			children = (
+				10271EDF20A5AAEE00542675 /* SwiftLibXML2 */,
+				10271ED820A5AAE100542675 /* ThirdKit */,
+				10271EAE20A5AA8500542675 /* SourceCore */,
+				10271E9420A5A7C700542675 /* OCDemo */,
+				10271E9320A5A7C700542675 /* Products */,
+				10271EAB20A5A84800542675 /* OCDemo-Bridging-Header.h */,
+				10271EE120A5AB0D00542675 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10271E9320A5A7C700542675 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10271E9220A5A7C700542675 /* OCDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10271E9420A5A7C700542675 /* OCDemo */ = {
+			isa = PBXGroup;
+			children = (
+				10271E9520A5A7C700542675 /* AppDelegate.h */,
+				10271E9620A5A7C700542675 /* AppDelegate.m */,
+				10271E9820A5A7C700542675 /* ViewController.h */,
+				10271E9920A5A7C700542675 /* ViewController.m */,
+				10271E9B20A5A7C700542675 /* Main.storyboard */,
+				10271E9E20A5A7C900542675 /* Assets.xcassets */,
+				10271EA020A5A7C900542675 /* LaunchScreen.storyboard */,
+				10271EA320A5A7C900542675 /* Info.plist */,
+				10271EA420A5A7C900542675 /* main.m */,
+			);
+			path = OCDemo;
+			sourceTree = "<group>";
+		};
+		10271EAE20A5AA8500542675 /* SourceCore */ = {
+			isa = PBXGroup;
+			children = (
+				10271EAF20A5AA8500542675 /* Utils */,
+				10271EB220A5AA8500542675 /* Controller */,
+				10271EB720A5AA8500542675 /* DataModel */,
+				10271EC120A5AA8500542675 /* Views */,
+			);
+			name = SourceCore;
+			path = ../DUAReader/SourceCore;
+			sourceTree = "<group>";
+		};
+		10271EAF20A5AA8500542675 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				10271EB020A5AA8500542675 /* DUAUtils.swift */,
+				10271EB120A5AA8500542675 /* UIView+subScript.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		10271EB220A5AA8500542675 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				10271EB320A5AA8500542675 /* DUAPageViewController.swift */,
+				10271EB420A5AA8500542675 /* DUAReader.swift */,
+				10271EB520A5AA8500542675 /* DUABackViewController.swift */,
+				10271EB620A5AA8500542675 /* DUAtranslationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		10271EB720A5AA8500542675 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				10271EB820A5AA8500542675 /* config */,
+				10271EBA20A5AA8500542675 /* parser */,
+				10271EBE20A5AA8500542675 /* storage */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		10271EB820A5AA8500542675 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				10271EB920A5AA8500542675 /* DUAConfiguration.swift */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		10271EBA20A5AA8500542675 /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				10271EBB20A5AA8500542675 /* DUADataParser.swift */,
+				10271EBC20A5AA8500542675 /* DUAEpubDataParser.swift */,
+				10271EBD20A5AA8500542675 /* DUATextDataParser.swift */,
+			);
+			path = parser;
+			sourceTree = "<group>";
+		};
+		10271EBE20A5AA8500542675 /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				10271EBF20A5AA8500542675 /* DUAChapterModel.swift */,
+				10271EC020A5AA8500542675 /* DUAPageModel.swift */,
+			);
+			path = storage;
+			sourceTree = "<group>";
+		};
+		10271EC120A5AA8500542675 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				10271EC220A5AA8500542675 /* DUAAttributedView.swift */,
+				10271EC320A5AA8500542675 /* DUATableView.swift */,
+				10271EC420A5AA8500542675 /* DUAConVexLensView.swift */,
+				10271EC520A5AA8500542675 /* DUATableViewCell.swift */,
+				10271EC620A5AA8500542675 /* DUAStatusBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		10271ED820A5AAE100542675 /* ThirdKit */ = {
+			isa = PBXGroup;
+			children = (
+				10271ED920A5AAE100542675 /* ZipArchive.framework */,
+				10271EDA20A5AAE100542675 /* DTCoreText.framework */,
+				10271EDB20A5AAE100542675 /* TouchXML.framework */,
+			);
+			name = ThirdKit;
+			path = ../DUAReader/ThirdKit;
+			sourceTree = "<group>";
+		};
+		10271EDF20A5AAEE00542675 /* SwiftLibXML2 */ = {
+			isa = PBXGroup;
+			children = (
+				10271EE020A5AAEE00542675 /* module.modulemap */,
+			);
+			name = SwiftLibXML2;
+			path = ../DUAReader/SwiftLibXML2;
+			sourceTree = "<group>";
+		};
+		10271EE120A5AB0D00542675 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10271EE220A5AB0D00542675 /* libxml2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10271E9120A5A7C700542675 /* OCDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10271EA820A5A7C900542675 /* Build configuration list for PBXNativeTarget "OCDemo" */;
+			buildPhases = (
+				10271E8E20A5A7C700542675 /* Sources */,
+				10271E8F20A5A7C700542675 /* Frameworks */,
+				10271E9020A5A7C700542675 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OCDemo;
+			productName = OCDemo;
+			productReference = 10271E9220A5A7C700542675 /* OCDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10271E8A20A5A7C700542675 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = mengminduan;
+				TargetAttributes = {
+					10271E9120A5A7C700542675 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+					};
+				};
+			};
+			buildConfigurationList = 10271E8D20A5A7C700542675 /* Build configuration list for PBXProject "OCDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 10271E8920A5A7C700542675;
+			productRefGroup = 10271E9320A5A7C700542675 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10271E9120A5A7C700542675 /* OCDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10271E9020A5A7C700542675 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10271EA220A5A7C900542675 /* LaunchScreen.storyboard in Resources */,
+				10271E9F20A5A7C900542675 /* Assets.xcassets in Resources */,
+				10271E9D20A5A7C700542675 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10271E8E20A5A7C700542675 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10271EC820A5AA8500542675 /* UIView+subScript.swift in Sources */,
+				10271EC720A5AA8500542675 /* DUAUtils.swift in Sources */,
+				10271ECD20A5AA8600542675 /* DUAConfiguration.swift in Sources */,
+				10271ED120A5AA8600542675 /* DUAChapterModel.swift in Sources */,
+				10271E9A20A5A7C700542675 /* ViewController.m in Sources */,
+				10271ED220A5AA8600542675 /* DUAPageModel.swift in Sources */,
+				10271ED620A5AA8600542675 /* DUATableViewCell.swift in Sources */,
+				10271ED420A5AA8600542675 /* DUATableView.swift in Sources */,
+				10271ED020A5AA8600542675 /* DUATextDataParser.swift in Sources */,
+				10271EC920A5AA8500542675 /* DUAPageViewController.swift in Sources */,
+				10271ECC20A5AA8600542675 /* DUAtranslationController.swift in Sources */,
+				10271ED320A5AA8600542675 /* DUAAttributedView.swift in Sources */,
+				10271ECF20A5AA8600542675 /* DUAEpubDataParser.swift in Sources */,
+				10271EA520A5A7C900542675 /* main.m in Sources */,
+				10271ECE20A5AA8600542675 /* DUADataParser.swift in Sources */,
+				10271E9720A5A7C700542675 /* AppDelegate.m in Sources */,
+				10271ECA20A5AA8500542675 /* DUAReader.swift in Sources */,
+				10271ECB20A5AA8600542675 /* DUABackViewController.swift in Sources */,
+				10271ED520A5AA8600542675 /* DUAConVexLensView.swift in Sources */,
+				10271ED720A5AA8600542675 /* DUAStatusBar.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		10271E9B20A5A7C700542675 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10271E9C20A5A7C700542675 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		10271EA020A5A7C900542675 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10271EA120A5A7C900542675 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10271EA620A5A7C900542675 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		10271EA720A5A7C900542675 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		10271EA920A5A7C900542675 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../DUAReader/ThirdKit\"";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/DUAReader/SwiftLibXML2",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = OCDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dua.OCDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OCDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		10271EAA20A5A7C900542675 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../DUAReader/ThirdKit\"";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/DUAReader/SwiftLibXML2",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = OCDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dua.OCDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OCDemo-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10271E8D20A5A7C700542675 /* Build configuration list for PBXProject "OCDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10271EA620A5A7C900542675 /* Debug */,
+				10271EA720A5A7C900542675 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10271EA820A5A7C900542675 /* Build configuration list for PBXNativeTarget "OCDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10271EA920A5A7C900542675 /* Debug */,
+				10271EAA20A5A7C900542675 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10271E8A20A5A7C700542675 /* Project object */;
+}
