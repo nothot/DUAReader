@@ -3,6 +3,17 @@
 
 ![image](https://github.com/nothot/DUAReader/blob/master/reader.gif)
 
+# 20180721 更新
+DUAReader现全面支持Objective-C，兼容Objective-C的版本将在fitOC分支单独维护，获取方式：
+
+- 克隆代码到本地
+
+git clone https://github.com/nothot/DUAReader.git
+
+- 切换到fitOC分支
+
+git checkout fitOC
+
 # 使用示例
 ```
         // txt示例
