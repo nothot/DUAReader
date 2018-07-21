@@ -12,7 +12,7 @@ git clone https://github.com/nothot/DUAReader.git
 
 - 切换到fitOC分支
 
-git checkout fitOC
+git checkout -b fitOC origin/fitOC
 
 # 使用示例
 ```
