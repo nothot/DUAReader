@@ -7,6 +7,7 @@ An e-book reader, supporting txt, epub, written in swift, has a variety of commo
 
 # 20180721 更新
 DUAReader现全面支持Objective-C，兼容Objective-C的版本将在fitOC分支单独维护，获取方式：
+
 DUAReader now fully supports Objective-C, and the Objective-C compatible version will be maintained separately in the fitOC branch
 
 - 克隆代码到本地
@@ -42,6 +43,7 @@ git checkout -b fitOC origin/fitOC
         mreader.readWith(filePath: epubPath!, pageIndex: 1)
 ```
 更多细节可参考demo
+
 See demo for more details
 
 可以引入源码或编译为framework进行使用，注意工程需要添加libxml2动态库依赖，可参看demo工程（epub解析需要）
